@@ -1,0 +1,18 @@
+def fractional_knapsack (items, capacity):
+    items.sort(key=lambda x: -x[1]/ x[0])
+    V, K = 0, []
+    for w, v in items:
+        f = min(1, capacity/w)
+        V, K, capacity = V + f * v, K+ [(w * f, v * f)], capacity - w* f
+    return V, K
+
+#Example usage:
+
+items= [(2, 60), (3, 50), (5, 70), (7, 30)] 
+W = 5
+
+max_value, selected_items = fractional_knapsack (items, W)
+
+print("Maximum value:", max_value)
+
+print("Selected items: ", selected_items)
